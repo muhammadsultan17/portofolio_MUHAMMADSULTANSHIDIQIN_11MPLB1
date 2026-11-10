@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Muhammad Sultan Shiddiqin</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Amiri (Arabic) & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            light: '#f6e05e',
+                            DEFAULT: '#d4af37',
+                            dark: '#b78a28',
+                        },
+                        space: {
+                            deep: '#050714',
+                            card: '#0d1127',
+                            border: '#1e264d'
+                        }
+                    },
+                    fontFamily: {
+                        arabic: ['Amiri', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Glowing & Arabic Pattern Effects */
+        .glow-gold {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        .arabic-pattern {
+            background-color: #050714;
+            background-image: radial-gradient(#d4af37 0.75px, transparent 0.75px), radial-gradient(#d4af37 0.75px, #050714 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0,15px 15px;
+            opacity: 0.15;
+        }
+        canvas#starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-space-deep text-slate-100 font-sans relative overflow-x-hidden">
+
+    <!-- Interactive Starfield Canvas Background -->
+    <canvas id="starfield"></canvas>
+    
+    <!-- Pattern Overlay -->
+    <div class="fixed inset-0 arabic-pattern pointer-events-none z-0"></div>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-space-deep/80 backdrop-blur-md border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <span class="text-gold font-arabic text-2xl font-bold">سلطان</span>
+                    <span class="text-lg font-bold tracking-wider text-white">M. SULTAN S.</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+                    <a href="#hero" class="hover:text-gold transition-colors">Beranda</a>
+                    <a href="#about" class="hover:text-gold transition-colors">Tentang Saya</a>
+                    <a href="#skills" class="hover:text-gold transition-colors">Keahlian</a>
+                    <a href="#projects" class="hover:text-gold transition-colors">Project</a>
+                    <a href="#contact" class="hover:text-gold transition-colors">Kontak</a>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#contact" class="px-5 py-2.5 rounded-full border border-gold text-gold hover:bg-gold hover:text-space-deep font-semibold transition-all duration-300 shadow-lg hover:shadow-gold/30">
+                        Hubungi Saya
+                    </a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-gold focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-space-card/95 border-b border-gold/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#hero" class="block py-2 text-slate-200 hover:text-gold border-b border-slate-800">Beranda</a>
+            <a href="#about" class="block py-2 text-slate-200 hover:text-gold border-b border-slate-800">Tentang Saya</a>
+            <a href="#skills" class="block py-2 text-slate-200 hover:text-gold border-b border-slate-800">Keahlian</a>
+            <a href="#projects" class="block py-2 text-slate-200 hover:text-gold border-b border-slate-800">Project</a>
+            <a href="#contact" class="block py-2 text-slate-200 hover:text-gold">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO -->
+    <section id="hero" class="min-h-screen pt-32 pb-20 flex items-center justify-center relative z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Arabic Calligraphy Ornament Header -->
+            <div class="mb-6">
+                <span class="font-arabic text-3xl sm:text-4xl text-gold glow-text block mb-2">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+                <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto"></div>
+            </div>
+
+            <!-- Empty Profile Photo Frame -->
+            <div class="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto mb-8">
+                <div class="absolute inset-0 rounded-full border-2 border-gold/40 animate-ping"></div>
+                <div class="relative w-full h-full rounded-full border-2 border-gold bg-space-card flex items-center justify-center glow-gold overflow-hidden">
+                    <!-- Icon Placeholder -->
+                    <i class="fa-solid fa-user-astronaut text-6xl text-gold/60"></i>
+                </div>
+                <!-- Arabic Decorative Accent Pin -->
+                <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-6 h-6 bg-gold rotate-45 flex items-center justify-center shadow-md shadow-gold/50">
+                    <div class="w-2 h-2 bg-space-deep"></div>
+                </div>
+            </div>
+
+            <!-- Main Titles -->
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
+                Muhammad Sultan Shiddiqin
+            </h1>
+            <p class="text-gold font-semibold text-lg sm:text-xl mb-6 tracking-wide">
+                Siswa SMK CYBER MEDIA • Manajemen Perkantoran & Layanan Bisnis
+            </p>
+
+            <!-- Introduction Text -->
+            <div class="max-w-2xl mx-auto bg-space-card/60 backdrop-blur-md p-6 rounded-2xl border border-gold/20 mb-8">
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+                    "Hallo, selamat datang di website portofolio saya, website ini dibuat untuk menaruh seluruh project yang saya buat!"
+                </p>
+            </div>
+
+            <!-- Call to Actions -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#projects" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-gold to-gold-dark text-space-deep font-bold rounded-full hover:shadow-lg hover:shadow-gold/40 transition-all duration-300">
+                    <i class="fa-solid fa-rocket mr-2"></i> Lihat Project
+                </a>
+                <a href="#contact" class="w-full sm:w-auto px-8 py-3.5 border border-gold/40 hover:border-gold text-slate-200 rounded-full hover:bg-gold/10 transition-all duration-300">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Hubungi Saya
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT -->
+    <section id="about" class="py-24 relative z-10 bg-space-card/30 border-y border-gold/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-gold font-arabic text-xl mb-1">من أنا</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold tracking-tight">Tentang Saya</h3>
+                <div class="w-16 h-1 bg-gold mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="bg-space-card border border-gold/30 p-8 rounded-2xl shadow-xl relative z-10">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-12 h-12 bg-gold/10 rounded-lg border border-gold/40 flex items-center justify-center text-gold text-2xl">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold">Pendidikan</h4>
+                                <p class="text-sm text-gold">SMK CYBER MEDIA</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-300 leading-relaxed mb-4">
+                            Saya adalah seorang siswa aktif di <strong>SMK CYBER MEDIA</strong> yang memiliki ketertarikan tinggi dalam efisiensi kerja perkantoran, manajemen administrasi, serta pengembangan teknologi web modern.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed">
+                            Fokus utama studi saya berada pada integrasi teknologi digital untuk mempercepat dan mempermudah operasional organisasi serta tata kelola bisnis.
+                        </p>
+                    </div>
+                    <!-- Geometric Decorative Box Behind -->
+                    <div class="absolute -bottom-4 -right-4 w-full h-full border border-gold/20 rounded-2xl pointer-events-none hidden sm:block"></div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-space-card border border-gold/30 p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-lg border border-gold/40 flex items-center justify-center text-gold text-xl flex-shrink-0">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-1">Jurusan MPLB</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                <strong>Manajemen Perkantoran dan Layanan Bisnis (MPLB)</strong> membekali saya dengan keahlian profesional dalam pengelolaan dokumen, korespondensi, otomatisasi perkantoran, dan pelayanan prima.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-space-card border border-gold/30 p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="w-12 h-12 bg-gold/10 rounded-lg border border-gold/40 flex items-center justify-center text-gold text-xl flex-shrink-0">
+                            <i class="fa-solid fa-compass-drafting"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-white mb-1">Visi & Minat</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Mengombinasikan keterampilan administrasi perkantoran dengan keahlian pembuatan landing page modern berbasis HTML, Tailwind CSS, dan JavaScript.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: SKILLS -->
+    <section id="skills" class="py-24 relative z-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-gold font-arabic text-xl mb-1">المهارات</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold tracking-tight">Keahlian Utama</h3>
+                <div class="w-16 h-1 bg-gold mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Skill 1 -->
+                <div class="bg-space-card border border-gold/20 hover:border-gold p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-file-word"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Microsoft Word</h4>
+                    <p class="text-slate-400 text-sm">Penyusunan dokumen formal, surat-menyurat bisnis, pembuatan laporan terstruktur, serta format tabel profesional.</p>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="bg-space-card border border-gold/20 hover:border-gold p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-orange-500/10 text-orange-400 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-file-powerpoint"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Microsoft PowerPoint</h4>
+                    <p class="text-slate-400 text-sm">Merancang slide presentasi interaktif, estetis, dan menarik untuk keperluan rapat bisnis maupun presentasi sekolah.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="bg-space-card border border-gold/20 hover:border-gold p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-gold/10 text-gold rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Komunikasi Bahasa Indonesia</h4>
+                    <p class="text-slate-400 text-sm">Kemampuan komunikasi verbal dan non-verbal yang efektif, sopan, serta persuasif sesuai tata bahasa Indonesia baku.</p>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="bg-space-card border border-gold/20 hover:border-gold p-6 rounded-2xl transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-box-archive"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Penyimpanan Arsip</h4>
+                    <p class="text-slate-400 text-sm">Pengelolaan sistem kearsipan fisik dan digital secara rapi, efisien, aman, dan mudah diakses kembali.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: PROJECTS -->
+    <section id="projects" class="py-24 relative z-10 bg-space-card/30 border-y border-gold/10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-gold font-arabic text-xl mb-1">المشاريع</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold tracking-tight">Project Saya</h3>
+                <div class="w-16 h-1 bg-gold mx-auto mt-3 rounded-full"></div>
+            </div>
+
+            <!-- Project Cards Container -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-space-card border border-gold/20 rounded-2xl overflow-hidden hover:border-gold/60 transition-all duration-300">
+                    <div class="h-48 bg-space-deep/80 flex items-center justify-center border-b border-gold/10 relative group">
+                        <i class="fa-solid fa-laptop-code text-5xl text-gold/40 group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-3 right-3 bg-gold/20 text-gold text-xs px-3 py-1 rounded-full border border-gold/30">Web App</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">Aplikasi Landing Page Portofolio</h4>
+                        <p class="text-slate-400 text-sm mb-4">Landing page interaktif bernuansa Galaxy & Arabic menggunakan Tailwind CSS dan JS Canvas.</p>
+                        <button onclick="openModal('Aplikasi Landing Page Portofolio', 'Project portofolio web modern dengan nuansa ruang angkasa dan aksen ornamen Arab klasik. Dibuat menggunakan HTML, JavaScript, dan Tailwind CSS.')" class="text-gold text-sm font-semibold hover:underline inline-flex items-center">
+                            Detail Project <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-space-card border border-gold/20 rounded-2xl overflow-hidden hover:border-gold/60 transition-all duration-300">
+                    <div class="h-48 bg-space-deep/80 flex items-center justify-center border-b border-gold/10 relative group">
+                        <i class="fa-solid fa-folder-tree text-5xl text-gold/40 group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-3 right-3 bg-gold/20 text-gold text-xs px-3 py-1 rounded-full border border-gold/30">MPLB</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">Sistem Digital Pengarsipan Dokumen</h4>
+                        <p class="text-slate-400 text-sm mb-4">Manajemen dan penyusunan struktur pengolahan arsip digital berbasis kategori jurusan MPLB.</p>
+                        <button onclick="openModal('Sistem Digital Pengarsipan Dokumen', 'Project simulasi pengarsipan surat dan berkas perusahaan berbasis digital untuk efisiensi penemuan kembali dokumen kantor.')" class="text-gold text-sm font-semibold hover:underline inline-flex items-center">
+                            Detail Project <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="bg-space-card border border-gold/20 rounded-2xl overflow-hidden hover:border-gold/60 transition-all duration-300">
+                    <div class="h-48 bg-space-deep/80 flex items-center justify-center border-b border-gold/10 relative group">
+                        <i class="fa-solid fa-file-powerpoint text-5xl text-gold/40 group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-3 right-3 bg-gold/20 text-gold text-xs px-3 py-1 rounded-full border border-gold/30">Presentasi</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold mb-2">Desain Presentasi Bisnis Modern</h4>
+                        <p class="text-slate-400 text-sm mb-4">Kumpulan template slide presentasi PowerPoint interaktif untuk kebutuhan laporan instansi.</p>
+    
